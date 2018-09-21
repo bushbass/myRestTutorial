@@ -8,12 +8,13 @@ router.get('/', function(req, res, next) {
 
 /* GET new user form */
 router.get('/new', function(req, res, next) {
-  res.send('/users/new is working');
+  res.render('create');
 });
 
 /* POST create new user route  */
 router.post('/', function(req, res, next) {
-  res.send('/users post route to create new user is working');
+  console.log(req.body)
+  res.redirect('/users');
 });
 
 /* GET list individual user  */
@@ -26,8 +27,7 @@ router.get('/:id', function(req, res, next) {
 /* GET edit individual user form  */
 router.get('/:id/edit', function(req, res, next) {
   const id = req.params.id
-  res.send(`/users edit form page is working with id of 
-  ${id}`);
+  res.render('edit');
 });
 
 /* PUT edit individual user  */
@@ -43,11 +43,6 @@ router.delete('/:id', function(req, res, next) {
   res.send(`/users delete route to delete user is working with id of 
   ${id}`);
 });
-
-/* 
-
-delete - delete a user
-*/
 
 
 module.exports = router;

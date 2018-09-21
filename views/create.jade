@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form(action="/users", method="post") 
+    label username
+    input(type="text", name="userName") 
+    br
+    label password  
+    input(type="text", name="password")
+    br
+    button(type="submit") Submit
+
