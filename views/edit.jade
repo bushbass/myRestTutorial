@@ -1,14 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to the edit page
-  form(action="/users", method="post") 
+  h1= username
+  p Welcome to the new edit page
+  form(action='/users/'+ id + '?_method=PUT', method="POST") 
     label username
-    input(type="text", name="userName", value="data from database") 
+    input(type="text", name="username", value=username) 
     br
     label password  
-    input(type="text", name="password")
+    input(type="text", name="password", value=password)
     br
     button(type="submit") Submit
+  form(action='/users/'+ id + '?_method=DELETE', method="POST") 
+    button(type="submit") delete
 
