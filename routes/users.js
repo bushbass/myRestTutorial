@@ -26,7 +26,7 @@ router.post('/', function (req, res, next) {
 
 /* GET list individual user  */
 router.get('/:id', function (req, res, next) {
-  User.findById({ _id: req.params.id }, (err, data) => {
+  User.findById(req.params.id, (err, data) => {
     if (err) return console.log(err)
     res.json(data)
   })
@@ -43,16 +43,18 @@ router.get('/:id/edit', function (req, res, next) {
 
 /* PUT edit individual user  */
 router.put('/:id', function (req, res, next) {
-  User.findOneAndUpdate({ _id: req.params.id }, { username: req.body.username }, { new: true }, (err, data) => {
-    console.log(data, req.body)
-    if (err) return console.log(err)
-    res.redirect('/users');
-  })
+  User.findOneAndUpdate({ _id: req.params.id },
+    { username: req.body.username },
+    { new: true },
+    (err, data) => {
+      if (err) return console.log(err)
+      res.redirect('/users');
+    })
 });
 
 /* DELETE delete individual user  */
 router.delete('/:id', (req, res) => {
-  User.findByIdAndRemove(req.params.id, (err) => {
+  User.findByIdAndRemove(req.params.id, err => {
     if (err) return console.log(err)
     res.redirect('/users');
   })
